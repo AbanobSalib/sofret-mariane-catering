@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Welcome Baby Anthony Salib — Baby Shower</title>
 <meta property="og:title" content="You're invited — Anthony's Baby Shower 💙">
-<meta property="og:description" content="Abanob & Karine welcome baby boy Anthony Salib. Saturday, June 13, 2026 · 4 PM until late · Outdoors.">
+<meta property="og:description" content="Abanob & Karine welcome baby boy Anthony Salib. Sunday, June 14, 2026 · 2 PM - 9:15 PM · North Glenmore Park.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -290,18 +290,18 @@
 <script>
   /* ========= EDIT YOUR DETAILS HERE ↓ ========= */
   const EVENT = {
-    date:    "Saturday, June 13, 2026",
-    time:    "4:00 PM until late",
-    venue:   "Outdoors — under the open sky",
-    address: "Tap to open the location 📍",
-    locationUrl: "https://share.google/CBz3ZFZKanOcaAbr1",
+    date:    "Sunday, June 14, 2026",
+    time:    "2:00 PM - 9:15 PM",
+    venue:   "North Glenmore Park — Snowy Owl Picnic Site with Shelter",
+    address: "Snowy Owl Picnic Site, North Glenmore Park 📍",
+    locationUrl: "https://www.google.com/maps/search/?api=1&query=50.99143,-114.13805",
     rsvpBy:  "June 6, 2026",
     rsvpEmail: "abanob.saleb@gmail.com",
     rsvpWhatsApp: "15879660105",          /* 587-966-0105 */
     rsvpFormUrl: "",   /* OPTIONAL & most reliable: paste a Google Form link here and the button opens it */
-    countdownTo: "2026-06-13T16:00:00",
-    gcalStart: "20260613T220000Z",
-    gcalEnd:   "20260614T040000Z",
+    countdownTo: "2026-06-14T14:00:00",
+    gcalStart: "20260614T200000Z",
+    gcalEnd:   "20260615T031500Z",
     babyPhoto: "",      /* optional: paste a photo URL of Anthony to show in the badge */
     birthDetails: ""    /* optional, e.g. "Born June 9, 2026 · 7 lb 4 oz · 20 in" — use · between items */
   };
@@ -417,8 +417,8 @@
       $('guest-note').value='Looking forward to celebrating Anthony.';
       updateRsvpLinks();
       const hasAll=(id,items)=>items.every(t=>$(id).href.includes(t));
-      const required=['Deep%20Test%20Guest','Number%20of%20guests%3A%204','Looking%20forward%20to%20celebrating%20Anthony.','Saturday%2C%20June%2013%2C%202026'];
-      const encodedLocation='https%3A%2F%2Fshare.google%2FCBz3ZFZKanOcaAbr1';
+      const required=['Deep%20Test%20Guest','Number%20of%20guests%3A%204','Looking%20forward%20to%20celebrating%20Anthony.','Sunday%2C%20June%2014%2C%202026'];
+      const encodedLocation='https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3D50.99143%2C-114.13805';
       ok('details replaced',!document.body.innerText.includes('[ Date ]')&&!document.body.innerText.includes('[ Venue ]'));
       ok('rsvp is button',$('rsvp-email').tagName==='BUTTON'&&!$('rsvp-email').getAttribute('href'));
       ok('mail app link',$('send-mail').href.startsWith('mailto:'+EVENT.rsvpEmail)&&hasAll('send-mail',required)&&$('send-mail').href.includes(encodedLocation));
