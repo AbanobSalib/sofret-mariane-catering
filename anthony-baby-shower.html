@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Welcome Baby Anthony Salib — Baby Shower</title>
 <meta property="og:title" content="You're invited — Anthony's Baby Shower 💙">
-<meta property="og:description" content="Abanob & Karine welcome baby boy Anthony Salib. Sunday, June 21, 2026 · 3:15 PM - 9:15 PM · Shouldice Park.">
+<meta property="og:description" content="Abanob & Karine welcome baby boy Anthony Salib. Saturday, June 13, 2026 · 1:30 PM - 5:00 PM · Mahogany West Beach.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -290,18 +290,18 @@
 <script>
   /* ========= EDIT YOUR DETAILS HERE ↓ ========= */
   const EVENT = {
-    date:    "Sunday, June 21, 2026",
-    time:    "3:15 PM - 9:15 PM",
-    venue:   "Shouldice Park — Picnic Site 1 RED",
-    address: "Shouldice Park Picnic Site 1 RED (A), Seats 102 📍",
-    locationUrl: "https://www.google.com/maps/search/?api=1&query=Shouldice%20Park%20Picnic%20Site%201%20RED%20Calgary",
-    rsvpBy:  "June 14, 2026",
+    date:    "Saturday, June 13, 2026",
+    time:    "1:30 PM - 5:00 PM",
+    venue:   "Mahogany West Beach",
+    address: "Mahogany West Beach, Calgary, AB 📍",
+    locationUrl: "https://maps.app.goo.gl/HT3UgwJBQjJren9o8?g_st=ic",
+    rsvpBy:  "June 12, 2026",
     rsvpEmail: "abanob.saleb@gmail.com",
     rsvpWhatsApp: "15879660105",          /* 587-966-0105 */
     rsvpFormUrl: "",   /* OPTIONAL & most reliable: paste a Google Form link here and the button opens it */
-    countdownTo: "2026-06-21T15:15:00",
-    gcalStart: "20260621T211500Z",
-    gcalEnd:   "20260622T031500Z",
+    countdownTo: "2026-06-13T13:30:00",
+    gcalStart: "20260613T193000Z",
+    gcalEnd:   "20260613T230000Z",
     babyPhoto: "",      /* optional: paste a photo URL of Anthony to show in the badge */
     birthDetails: ""    /* optional, e.g. "Born June 9, 2026 · 7 lb 4 oz · 20 in" — use · between items */
   };
@@ -417,8 +417,8 @@
       $('guest-note').value='Looking forward to celebrating Anthony.';
       updateRsvpLinks();
       const hasAll=(id,items)=>items.every(t=>$(id).href.includes(t));
-      const required=['Deep%20Test%20Guest','Number%20of%20guests%3A%204','Looking%20forward%20to%20celebrating%20Anthony.','Sunday%2C%20June%2021%2C%202026'];
-      const encodedLocation='https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DShouldice%2520Park%2520Picnic%2520Site%25201%2520RED%2520Calgary';
+      const required=['Deep%20Test%20Guest','Number%20of%20guests%3A%204','Looking%20forward%20to%20celebrating%20Anthony.','Saturday%2C%20June%2013%2C%202026'];
+      const encodedLocation='https%3A%2F%2Fmaps.app.goo.gl%2FHT3UgwJBQjJren9o8%3Fg_st%3Dic';
       ok('details replaced',!document.body.innerText.includes('[ Date ]')&&!document.body.innerText.includes('[ Venue ]'));
       ok('rsvp is button',$('rsvp-email').tagName==='BUTTON'&&!$('rsvp-email').getAttribute('href'));
       ok('mail app link',$('send-mail').href.startsWith('mailto:'+EVENT.rsvpEmail)&&hasAll('send-mail',required)&&$('send-mail').href.includes(encodedLocation));
