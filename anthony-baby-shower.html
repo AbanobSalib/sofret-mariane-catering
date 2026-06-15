@@ -22,6 +22,7 @@
     --leaf:#6f8e69;
     --rose:#d98a7a;
     --gold:#c9963f;
+    --night:#101a2d;
     --line:rgba(23,32,51,.14);
     --shadow:0 26px 70px -34px rgba(19,38,68,.48);
   }
@@ -74,6 +75,51 @@
   .stat b{display:block;font-family:Fraunces,serif;font-size:2rem;color:var(--deep);line-height:1}
   .stat span{display:block;margin-top:7px;font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 
+  .world-section{position:relative;overflow:hidden;background:
+    radial-gradient(circle at 22% 28%,rgba(217,138,122,.34),transparent 30%),
+    radial-gradient(circle at 78% 22%,rgba(111,142,105,.32),transparent 28%),
+    linear-gradient(145deg,#101a2d,#20385a 56%,#f5e3bd 170%);
+    color:#fff}
+  .world-section::before{content:"";position:absolute;inset:0;opacity:.28;background-image:radial-gradient(circle,rgba(255,255,255,.74) 1px,transparent 1.5px);background-size:38px 38px;mask-image:linear-gradient(90deg,#000,transparent 72%)}
+  .world-inner{position:relative;z-index:1;width:min(1120px,100%);margin:0 auto;padding:clamp(66px,9vw,108px) clamp(20px,5vw,64px);display:grid;grid-template-columns:minmax(0,.86fr) minmax(360px,1.14fr);gap:clamp(32px,6vw,74px);align-items:center}
+  .kicker{margin:0 0 14px;font-size:.75rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#f2c66d}
+  .world-copy h2{font-family:Fraunces,serif;font-size:clamp(2.45rem,6vw,5.4rem);line-height:.93;letter-spacing:-.04em;margin:0;text-wrap:balance}
+  .world-copy p:not(.kicker){max-width:520px;margin:22px 0 0;color:rgba(255,255,255,.78);font-size:1.04rem;line-height:1.8}
+  .share-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .share-row .btn{min-height:44px}
+  .share-row .btn-primary{background:#fff;color:#172033}
+  .share-row .btn-secondary{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.24)}
+  .world-stage{position:relative;min-height:560px;display:grid;place-items:center;perspective:1100px}
+  .earth{position:relative;width:min(48vw,430px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:
+      radial-gradient(circle at 32% 24%,rgba(255,255,255,.9),transparent 9%),
+      radial-gradient(circle at 36% 32%,#87c7ff 0 15%,transparent 16%),
+      radial-gradient(circle at 66% 48%,#77a96e 0 9%,transparent 10%),
+      radial-gradient(circle at 48% 64%,#6c9364 0 13%,transparent 14%),
+      radial-gradient(circle at 28% 52%,#d9bd7a 0 12%,transparent 13%),
+      linear-gradient(135deg,#69b5ed,#2f6fa9 54%,#153b6a);
+    box-shadow:inset -44px -34px 70px rgba(7,18,33,.48),inset 18px 18px 40px rgba(255,255,255,.16),0 44px 110px -42px rgba(0,0,0,.82);animation:earthBreathe 7s ease-in-out infinite}
+  .earth::before{content:"";position:absolute;inset:-12% -36%;background:
+    radial-gradient(ellipse at 20% 42%,#6f9f67 0 7%,transparent 8%),
+    radial-gradient(ellipse at 43% 54%,#e0c27c 0 8%,transparent 9%),
+    radial-gradient(ellipse at 61% 36%,#6f9f67 0 9%,transparent 10%),
+    radial-gradient(ellipse at 76% 62%,#d9bd7a 0 7%,transparent 8%);
+    filter:blur(.4px);opacity:.92;animation:landDrift 18s linear infinite}
+  .earth::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(115deg,rgba(255,255,255,.32),transparent 36%,rgba(0,0,0,.22) 78%)}
+  .orbit{position:absolute;inset:7%;z-index:3;border:1px solid rgba(255,255,255,.15);border-radius:50%;transform-style:preserve-3d;animation:orbitSpin 24s linear infinite;pointer-events:none}
+  .orbit-two{inset:15%;animation-duration:19s;animation-direction:reverse;transform:rotateX(64deg) rotateZ(-18deg)}
+  .orbit-one{transform:rotateX(66deg) rotateZ(18deg)}
+  .photo-chip{position:absolute;width:108px;aspect-ratio:1;border:3px solid rgba(255,255,255,.9);border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 18px 44px -18px rgba(0,0,0,.75);transform:translate(-50%,-50%) rotateX(-66deg);cursor:pointer}
+  .world-stage:hover .orbit{animation-play-state:paused}
+  .orbit .photo-chip{pointer-events:auto}
+  .photo-chip img{width:100%;height:100%;object-fit:cover;display:block}
+  .photo-chip:nth-child(1){left:50%;top:0}.photo-chip:nth-child(2){left:94%;top:38%}.photo-chip:nth-child(3){left:75%;top:88%}.photo-chip:nth-child(4){left:18%;top:78%}.photo-chip:nth-child(5){left:6%;top:32%}
+  .orbit-two .photo-chip{width:86px;border-radius:18px;transform:translate(-50%,-50%) rotateX(-64deg)}
+  .memory-pin{position:absolute;left:50%;top:50%;z-index:2;width:18px;height:18px;border-radius:50%;background:#f2c66d;box-shadow:0 0 0 9px rgba(242,198,109,.18),0 0 38px rgba(242,198,109,.9);animation:pulsePin 1.8s ease-in-out infinite}
+  @keyframes orbitSpin{to{transform:rotateX(66deg) rotateZ(378deg)}}
+  @keyframes earthBreathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.025)}}
+  @keyframes landDrift{to{transform:translateX(26%)}}
+  @keyframes pulsePin{0%,100%{transform:translate(-50%,-50%) scale(.9)}50%{transform:translate(-50%,-50%) scale(1.2)}}
+
   .gallery-head{display:flex;justify-content:space-between;gap:22px;align-items:end;padding-bottom:24px}
   .gallery-head p{max-width:470px;margin:0;color:var(--muted);line-height:1.7;font-weight:600}
   .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
@@ -111,6 +157,11 @@
     .hero{min-height:86vh}
     .hero::after{background:linear-gradient(180deg,rgba(12,23,39,.1),rgba(13,24,42,.22) 35%,rgba(13,24,42,.78))}
     .note{grid-template-columns:1fr}
+    .world-inner{grid-template-columns:1fr}
+    .world-stage{min-height:430px}
+    .earth{width:min(72vw,360px)}
+    .photo-chip{width:86px;border-radius:18px}
+    .orbit-two .photo-chip{width:72px}
     .gallery-head{display:block}
     .gallery-head p{margin-top:14px}
     .gallery{grid-template-columns:repeat(6,1fr)}
@@ -124,13 +175,19 @@
     h1{font-size:clamp(2.75rem,13.5vw,3.55rem);letter-spacing:-.035em}
     .hero-copy{font-size:1rem}
     .btn{width:100%}
+    .world-inner{padding-top:54px;padding-bottom:64px}
+    .world-stage{min-height:360px}
+    .earth{width:min(76vw,290px)}
+    .photo-chip{width:70px;border-radius:15px;border-width:2px}
+    .orbit-two .photo-chip{width:58px}
+    .share-row .btn{width:100%}
     .memory-strip{grid-template-columns:1fr}
     .memory-strip img:first-child{grid-row:auto;min-height:230px}
     .tile{border-radius:18px;min-height:220px}
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
-    .scroll-cue,.tile,.tile img{animation:none!important;transition:none!important}
+    .scroll-cue,.tile,.tile img,.earth,.earth::before,.orbit,.memory-pin{animation:none!important;transition:none!important}
     .tile{opacity:1;transform:none}
   }
 </style>
@@ -144,9 +201,9 @@
       <h1>Thank you for celebrating with us</h1>
       <p class="hero-copy">Your love, hugs, prayers, photos, laughter, and presence made Anthony's celebration feel full of warmth. We are so grateful you were there with us.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#gallery">
-          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-          View photos
+        <a class="btn btn-primary" href="#world">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="M2 12h20M12 2c3 3 4.5 6.3 4.5 10S15 19 12 22M12 2c-3 3-4.5 6.3-4.5 10S9 19 12 22"/></svg>
+          Start the memories
         </a>
         <button class="btn btn-secondary" id="sharePage" type="button">
           <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-4.4M8.6 13.3l6.8 4.4"/></svg>
@@ -182,6 +239,48 @@
         <img src="assets/anthony-thank-you/thumbs/moment-02-thumb.jpg" alt="Baby shower memory">
         <img src="assets/anthony-thank-you/thumbs/moment-03-thumb.jpg" alt="Baby shower memory">
         <img src="assets/anthony-thank-you/thumbs/moment-04-thumb.jpg" alt="Baby shower memory">
+      </div>
+    </section>
+
+    <section class="world-section" id="world">
+      <div class="world-inner">
+        <div class="world-copy">
+          <p class="kicker">A little world of memories</p>
+          <h2>Every photo brings us back to that day.</h2>
+          <p>The love you brought to Anthony, Talia, and our family is now part of this little orbit of memories. Tap a floating photo, open the full gallery, or share the page directly with family and friends.</p>
+          <div class="share-row">
+            <button class="btn btn-primary" id="sharePageWorld" type="button">
+              <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-4.4M8.6 13.3l6.8 4.4"/></svg>
+              Share page
+            </button>
+            <a class="btn btn-secondary" id="whatsAppShare" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M20 11.7a8 8 0 0 1-11.8 7L4 20l1.4-4a8 8 0 1 1 14.6-4.3Z"/><path d="M8.6 8.7c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.6 1.4c.1.3.1.5-.1.7l-.4.5c.6 1 1.4 1.8 2.5 2.3l.6-.5c.2-.2.4-.2.7-.1l1.3.6c.3.1.4.3.4.6v.4c0 .4-.2.7-.6.8-.8.2-2.5-.1-4.2-1.4-1.9-1.5-3.1-3.6-3-4.6Z"/></svg>
+              WhatsApp
+            </a>
+            <a class="btn btn-secondary" id="messageShare" href="#">
+              <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9.4 9.4 0 0 1-4.2-1L3 20l1.3-4A8.1 8.1 0 0 1 3 11.5 8.6 8.6 0 0 1 12 3a8.6 8.6 0 0 1 9 8.5Z"/></svg>
+              Message
+            </a>
+          </div>
+        </div>
+        <div class="world-stage" aria-label="Animated photo world">
+          <div class="earth" aria-hidden="true"></div>
+          <button class="memory-pin photo-chip" type="button" data-photo-index="0" aria-label="Open featured memory"></button>
+          <div class="orbit orbit-one">
+            <button class="photo-chip" type="button" data-photo-index="1"><img src="assets/anthony-thank-you/thumbs/moment-02-thumb.jpg" alt="Open baby shower memory"></button>
+            <button class="photo-chip" type="button" data-photo-index="4"><img src="assets/anthony-thank-you/thumbs/moment-05-thumb.jpg" alt="Open baby shower memory"></button>
+            <button class="photo-chip" type="button" data-photo-index="7"><img src="assets/anthony-thank-you/thumbs/moment-08-thumb.jpg" alt="Open baby shower memory"></button>
+            <button class="photo-chip" type="button" data-photo-index="10"><img src="assets/anthony-thank-you/thumbs/moment-11-thumb.jpg" alt="Open baby shower memory"></button>
+            <button class="photo-chip" type="button" data-photo-index="13"><img src="assets/anthony-thank-you/thumbs/moment-14-thumb.jpg" alt="Open baby shower memory"></button>
+          </div>
+          <div class="orbit orbit-two">
+            <button class="photo-chip" type="button" data-photo-index="2"><img src="assets/anthony-thank-you/thumbs/moment-03-thumb.jpg" alt="Open baby shower memory"></button>
+            <button class="photo-chip" type="button" data-photo-index="5"><img src="assets/anthony-thank-you/thumbs/moment-06-thumb.jpg" alt="Open baby shower memory"></button>
+            <button class="photo-chip" type="button" data-photo-index="8"><img src="assets/anthony-thank-you/thumbs/moment-09-thumb.jpg" alt="Open baby shower memory"></button>
+            <button class="photo-chip" type="button" data-photo-index="11"><img src="assets/anthony-thank-you/thumbs/moment-12-thumb.jpg" alt="Open baby shower memory"></button>
+            <button class="photo-chip" type="button" data-photo-index="14"><img src="assets/anthony-thank-you/thumbs/moment-15-thumb.jpg" alt="Open baby shower memory"></button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -227,6 +326,9 @@
 <div class="toast" id="toast">Link copied</div>
 
 <script>
+  const PUBLIC_URL='https://abanobsalib.github.io/sofret-mariane-catering/anthony-baby-shower.html';
+  const SHARE_TITLE='Thank you for celebrating Anthony';
+  const SHARE_TEXT='Thank you for celebrating Anthony with us. Here are some photos from the day.';
   const tiles=[...document.querySelectorAll('.tile')];
   const lightbox=document.getElementById('lightbox');
   const lightboxImage=document.getElementById('lightboxImage');
@@ -245,6 +347,9 @@
     tile.style.transitionDelay=Math.min(index*45,420)+'ms';
     observer.observe(tile);
     tile.addEventListener('click',()=>openPhoto(index));
+  });
+  document.querySelectorAll('[data-photo-index]').forEach(button=>{
+    button.addEventListener('click',()=>openPhoto(Number(button.dataset.photoIndex)||0));
   });
 
   function openPhoto(index){
@@ -278,19 +383,37 @@
     toast.classList.add('show');
     setTimeout(()=>toast.classList.remove('show'),2600);
   }
-  document.getElementById('sharePage').addEventListener('click',async()=>{
-    const url=location.href.split('?')[0];
-    const text="Thank you for celebrating Anthony with us. Here are some photos from the day.";
+  function fallbackCopy(text){
+    const input=document.createElement('textarea');
+    input.value=text;
+    input.setAttribute('readonly','');
+    input.style.position='fixed';
+    input.style.left='-9999px';
+    document.body.appendChild(input);
+    input.select();
+    let copied=false;
+    try{copied=document.execCommand('copy');}catch(_){}
+    input.remove();
+    return copied;
+  }
+  async function sharePage(){
+    const url=PUBLIC_URL;
     if(navigator.share){
-      try{await navigator.share({title:'Thank you for celebrating Anthony',text,url});return;}catch(_){}
+      try{await navigator.share({title:SHARE_TITLE,text:SHARE_TEXT,url});return;}catch(_){}
     }
     try{
       await navigator.clipboard.writeText(url);
-      showToast('Link copied');
+      showToast('Public link copied');
     }catch(_){
-      showToast('Copy this page link');
+      showToast(fallbackCopy(url)?'Public link copied':url);
     }
-  });
+  }
+  const encodedUrl=encodeURIComponent(PUBLIC_URL);
+  const encodedText=encodeURIComponent(SHARE_TEXT+' '+PUBLIC_URL);
+  document.getElementById('whatsAppShare').href='https://wa.me/?text='+encodedText;
+  document.getElementById('messageShare').href='sms:&body='+encodedText;
+  document.getElementById('sharePage').addEventListener('click',sharePage);
+  document.getElementById('sharePageWorld').addEventListener('click',sharePage);
 </script>
 </body>
 </html>
