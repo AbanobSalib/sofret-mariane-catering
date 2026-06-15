@@ -182,6 +182,18 @@
   .toast{position:fixed;left:50%;bottom:22px;z-index:60;transform:translate(-50%,22px);opacity:0;pointer-events:none;padding:13px 16px;border-radius:999px;
     color:#fff;background:rgba(23,32,51,.9);font-weight:800;box-shadow:0 18px 48px -22px rgba(0,0,0,.6);transition:opacity .25s ease,transform .25s ease}
   .toast.show{opacity:1;transform:translate(-50%,0)}
+  .share-sheet{position:fixed;inset:0;z-index:70;display:none;align-items:end;justify-content:center;background:rgba(7,16,31,.48);padding:18px}
+  .share-sheet.open{display:flex}
+  .share-card{width:min(520px,100%);border-radius:24px;padding:18px;background:rgba(255,255,255,.96);box-shadow:0 30px 90px -34px rgba(0,0,0,.65);color:var(--ink)}
+  .share-card h3{font-family:Fraunces,serif;font-size:1.55rem;line-height:1;margin:0 0 8px;color:#243755}
+  .share-card p{margin:0 0 14px;color:var(--muted);line-height:1.5;font-weight:600}
+  .share-link{display:flex;gap:8px;padding:8px;border:1px solid var(--line);border-radius:16px;background:#f7f9fc}
+  .share-link input{min-width:0;flex:1;border:0;background:transparent;color:#243755;font:inherit;font-weight:700;outline:none}
+  .share-options{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  .share-options .btn{min-height:44px;border-radius:14px;padding:0 12px}
+  .share-options .btn-primary{background:#172033;color:#fff}
+  .share-options .btn-secondary{background:#eef3f8;color:#172033;border-color:rgba(23,32,51,.1);backdrop-filter:none}
+  .share-close{width:100%;margin-top:10px;background:transparent;border:0;color:var(--muted);font-weight:800;cursor:pointer;min-height:38px}
 
   @media(max-width:820px){
     .hero{min-height:86vh}
@@ -219,6 +231,9 @@
     .memory-pin{width:74px;border-radius:18px;border-width:2px}
     .arrival-card{font-size:.64rem;letter-spacing:.08em;padding:8px 10px}
     .share-row .btn{width:100%}
+    .share-link{flex-direction:column}
+    .share-link .btn{width:100%}
+    .share-options{grid-template-columns:1fr}
     .memory-strip{grid-template-columns:1fr}
     .memory-strip img:first-child{grid-row:auto;min-height:230px}
     .tile{border-radius:18px;min-height:220px}
@@ -366,6 +381,22 @@
   <button class="nav next" id="nextPhoto" type="button" aria-label="Next photo">›</button>
 </div>
 <div class="toast" id="toast">Link copied</div>
+<div class="share-sheet" id="shareSheet" aria-modal="true" role="dialog" aria-label="Share Anthony's memory gallery">
+  <div class="share-card">
+    <h3>Share the memories</h3>
+    <p>Use this public link for WhatsApp, Messages, or copying directly.</p>
+    <div class="share-link">
+      <input id="publicShareLink" type="text" readonly value="https://abanobsalib.github.io/sofret-mariane-catering/anthony-baby-shower.html" aria-label="Public share link">
+      <button class="btn btn-primary" id="copyShareLink" type="button">Copy</button>
+    </div>
+    <div class="share-options">
+      <a class="btn btn-secondary" id="sheetWhatsAppShare" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-secondary" id="sheetMessageShare" href="#">Message</a>
+      <button class="btn btn-secondary" id="nativeShare" type="button">Share</button>
+    </div>
+    <button class="share-close" id="closeShareSheet" type="button">Close</button>
+  </div>
+</div>
 
 <script>
   const PUBLIC_URL='https://abanobsalib.github.io/sofret-mariane-catering/anthony-baby-shower.html';
@@ -375,6 +406,8 @@
   const lightbox=document.getElementById('lightbox');
   const lightboxImage=document.getElementById('lightboxImage');
   const toast=document.getElementById('toast');
+  const shareSheet=document.getElementById('shareSheet');
+  const publicShareLink=document.getElementById('publicShareLink');
   let activeIndex=0;
 
   const observer=new IntersectionObserver(entries=>{
@@ -438,24 +471,62 @@
     input.remove();
     return copied;
   }
-  async function sharePage(){
-    const url=PUBLIC_URL;
-    if(navigator.share){
-      try{await navigator.share({title:SHARE_TITLE,text:SHARE_TEXT,url});return;}catch(_){}
-    }
+  async function copyPublicLink(){
     try{
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(PUBLIC_URL);
       showToast('Public link copied');
+      return true;
     }catch(_){
-      showToast(fallbackCopy(url)?'Public link copied':url);
+      const copied=fallbackCopy(PUBLIC_URL);
+      showToast(copied?'Public link copied':PUBLIC_URL);
+      return copied;
     }
   }
-  const encodedUrl=encodeURIComponent(PUBLIC_URL);
-  const encodedText=encodeURIComponent(SHARE_TEXT+' '+PUBLIC_URL);
-  document.getElementById('whatsAppShare').href='https://wa.me/?text='+encodedText;
-  document.getElementById('messageShare').href='sms:&body='+encodedText;
-  document.getElementById('sharePage').addEventListener('click',sharePage);
-  document.getElementById('sharePageWorld').addEventListener('click',sharePage);
+  async function nativeShare(){
+    if(!navigator.share){
+      openShareSheet();
+      return false;
+    }
+    try{
+      await navigator.share({title:SHARE_TITLE,text:SHARE_TEXT,url:PUBLIC_URL});
+      return true;
+    }catch(_){
+      openShareSheet();
+      return false;
+    }
+  }
+  function smsHref(){
+    const body=encodeURIComponent(SHARE_TEXT+' '+PUBLIC_URL);
+    const ua=navigator.userAgent || '';
+    if(/iPad|iPhone|iPod/.test(ua)) return 'sms:&body='+body;
+    if(/Android/i.test(ua)) return 'sms:?body='+body;
+    return 'sms:?&body='+body;
+  }
+  function setupShareLinks(){
+    const encodedText=encodeURIComponent(SHARE_TEXT+' '+PUBLIC_URL);
+    const whatsappUrl='https://api.whatsapp.com/send?text='+encodedText;
+    document.getElementById('whatsAppShare').href=whatsappUrl;
+    document.getElementById('sheetWhatsAppShare').href=whatsappUrl;
+    document.getElementById('messageShare').href=smsHref();
+    document.getElementById('sheetMessageShare').href=smsHref();
+    publicShareLink.value=PUBLIC_URL;
+  }
+  function openShareSheet(){
+    setupShareLinks();
+    shareSheet.classList.add('open');
+    setTimeout(()=>publicShareLink.select(),50);
+  }
+  function closeShareSheet(){
+    shareSheet.classList.remove('open');
+  }
+  setupShareLinks();
+  document.getElementById('sharePage').addEventListener('click',openShareSheet);
+  document.getElementById('sharePageWorld').addEventListener('click',openShareSheet);
+  document.getElementById('copyShareLink').addEventListener('click',copyPublicLink);
+  document.getElementById('nativeShare').addEventListener('click',nativeShare);
+  document.getElementById('closeShareSheet').addEventListener('click',closeShareSheet);
+  shareSheet.addEventListener('click',event=>{if(event.target===shareSheet) closeShareSheet();});
+  publicShareLink.addEventListener('click',()=>publicShareLink.select());
 </script>
 </body>
 </html>
