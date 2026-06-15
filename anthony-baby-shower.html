@@ -117,27 +117,37 @@
     repeating-linear-gradient(90deg,rgba(255,255,255,.13) 0 1px,transparent 1px 40px),
     repeating-linear-gradient(0deg,rgba(255,255,255,.11) 0 1px,transparent 1px 44px);
     mix-blend-mode:screen}
+  .cloud-layer{position:absolute;inset:-6%;z-index:3;border-radius:50%;overflow:hidden;pointer-events:none;opacity:.58;mix-blend-mode:screen;animation:cloudSpin 17s linear infinite}
+  .cloud-layer::before{content:"";position:absolute;inset:-10% -46%;background:
+    radial-gradient(ellipse at 12% 28%,rgba(255,255,255,.72) 0 6%,transparent 7%),
+    radial-gradient(ellipse at 34% 62%,rgba(255,255,255,.62) 0 8%,transparent 9%),
+    radial-gradient(ellipse at 58% 36%,rgba(255,255,255,.58) 0 7%,transparent 8%),
+    radial-gradient(ellipse at 84% 58%,rgba(255,255,255,.66) 0 8%,transparent 9%);
+    filter:blur(5px)}
   .arrival-card{position:absolute;right:3%;top:9%;z-index:5;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(14px);box-shadow:0 18px 46px -24px rgba(0,0,0,.9);font-size:.78rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#fff;animation:arrivalCard 4.8s ease-in-out infinite}
   .arrival-card span{width:10px;height:10px;border-radius:50%;background:#f2c66d;box-shadow:0 0 0 7px rgba(242,198,109,.16)}
-  .orbit{position:absolute;inset:5%;z-index:4;border:1px solid rgba(255,255,255,.22);border-radius:50%;transform-style:preserve-3d;animation:orbitSpin 18s linear infinite;pointer-events:none}
-  .orbit-two{inset:14%;animation-duration:14s;animation-direction:reverse;transform:rotateX(64deg) rotateZ(-18deg)}
+  .orbit{position:absolute;inset:5%;z-index:4;border:1px solid rgba(255,255,255,.2);border-radius:50%;transform-style:preserve-3d;pointer-events:none}
+  .orbit-two{inset:14%;transform:rotateX(64deg) rotateZ(-18deg)}
   .orbit-one{transform:rotateX(66deg) rotateZ(18deg)}
+  .satellite{position:absolute;inset:-7%;transform-style:preserve-3d;animation:satelliteSpin var(--speed,18s) linear infinite;pointer-events:none}
+  .satellite .photo-chip{left:50%;top:0;pointer-events:auto}
+  .satellite:nth-child(1){--speed:16s;animation-delay:-1s}.satellite:nth-child(2){--speed:19s;animation-delay:-5s}.satellite:nth-child(3){--speed:22s;animation-delay:-9s}.satellite:nth-child(4){--speed:18s;animation-delay:-13s}.satellite:nth-child(5){--speed:24s;animation-delay:-17s}
+  .orbit-two .satellite:nth-child(1){--speed:15s;animation-delay:-3s}.orbit-two .satellite:nth-child(2){--speed:21s;animation-delay:-7s}.orbit-two .satellite:nth-child(3){--speed:18s;animation-delay:-11s}.orbit-two .satellite:nth-child(4){--speed:23s;animation-delay:-15s}.orbit-two .satellite:nth-child(5){--speed:17s;animation-delay:-19s}
   .photo-chip{position:absolute;width:124px;aspect-ratio:1;border:4px solid rgba(255,255,255,.95);border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 22px 54px -18px rgba(0,0,0,.8);transform:translate(-50%,-50%) rotateX(-66deg) rotate(-4deg);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
-  .world-stage:hover .orbit{animation-play-state:paused}
-  .orbit .photo-chip{pointer-events:auto}
+  .world-stage:hover .satellite{animation-play-state:paused}
   .photo-chip:hover{transform:translate(-50%,-50%) rotateX(-66deg) rotate(0deg) scale(1.08);box-shadow:0 30px 72px -18px rgba(0,0,0,.92)}
   .photo-chip img{width:100%;height:100%;object-fit:cover;display:block}
-  .photo-chip:nth-child(1){left:50%;top:0}.photo-chip:nth-child(2){left:94%;top:38%}.photo-chip:nth-child(3){left:75%;top:88%}.photo-chip:nth-child(4){left:18%;top:78%}.photo-chip:nth-child(5){left:6%;top:32%}
   .orbit-two .photo-chip{width:94px;border-radius:20px;transform:translate(-50%,-50%) rotateX(-64deg) rotate(5deg)}
   .memory-pin{position:absolute;left:57%;top:42%;z-index:5;width:118px;aspect-ratio:1;border:4px solid #fff;border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 24px 62px -22px rgba(0,0,0,.9),0 0 0 10px rgba(242,198,109,.1);animation:pulsePin 2.4s ease-in-out infinite}
   .memory-pin img{width:100%;height:100%;object-fit:cover;display:block}
-  @keyframes orbitSpin{to{transform:rotateX(66deg) rotateZ(378deg)}}
+  @keyframes satelliteSpin{to{transform:rotateZ(360deg)}}
   @keyframes earthTravel{0%,100%{transform:translate3d(-10px,8px,0) rotate(-2deg) scale(.985)}42%{transform:translate3d(14px,-10px,0) rotate(2deg) scale(1.035)}70%{transform:translate3d(0,-4px,0) rotate(0deg) scale(1.01)}}
   @keyframes stageGlow{0%,100%{opacity:.7;transform:scale(.96)}50%{opacity:1;transform:scale(1.05)}}
   @keyframes routeArrive{0%{clip-path:inset(0 88% 0 0);opacity:.35}45%,70%{clip-path:inset(0 0 0 0);opacity:1}100%{clip-path:inset(0 0 0 82%);opacity:.35}}
   @keyframes arrivalFlash{0%,100%{transform:scale(.86)}50%{transform:scale(1.28)}}
   @keyframes arrivalCard{0%,100%{transform:translateY(8px);opacity:.78}45%,70%{transform:none;opacity:1}}
   @keyframes landDrift{to{transform:translateX(30%)}}
+  @keyframes cloudSpin{to{transform:rotate(360deg)}}
   @keyframes pulsePin{0%,100%{transform:translate(-50%,-50%) rotate(3deg) scale(.96)}50%{transform:translate(-50%,-50%) rotate(-2deg) scale(1.04)}}
 
   .gallery-head{display:flex;justify-content:space-between;gap:22px;align-items:end;padding-bottom:24px}
@@ -180,6 +190,8 @@
     .world-inner{grid-template-columns:1fr}
     .world-stage{min-height:430px}
     .earth{width:min(72vw,360px)}
+    .orbit{inset:9%}
+    .orbit-two{inset:18%}
     .photo-chip{width:86px;border-radius:18px}
     .orbit-two .photo-chip{width:72px}
     .memory-pin{width:94px;border-radius:22px}
@@ -200,6 +212,8 @@
     .world-inner{padding-top:54px;padding-bottom:64px}
     .world-stage{min-height:360px}
     .earth{width:min(76vw,290px)}
+    .orbit{inset:14%}
+    .orbit-two{inset:22%}
     .photo-chip{width:70px;border-radius:15px;border-width:2px}
     .orbit-two .photo-chip{width:58px}
     .memory-pin{width:74px;border-radius:18px;border-width:2px}
@@ -211,7 +225,7 @@
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
-    .scroll-cue,.tile,.tile img,.earth,.earth::before,.orbit,.memory-pin,.route,.arrival-card{animation:none!important;transition:none!important}
+    .scroll-cue,.tile,.tile img,.earth,.earth::before,.cloud-layer,.satellite,.memory-pin,.route,.arrival-card{animation:none!important;transition:none!important}
     .tile{opacity:1;transform:none}
   }
 </style>
@@ -289,24 +303,24 @@
         </div>
         <div class="world-stage" aria-label="Animated photo world">
           <div class="route" aria-hidden="true"></div>
-          <div class="earth" aria-hidden="true"></div>
+          <div class="earth" aria-hidden="true"><div class="cloud-layer"></div></div>
           <div class="arrival-card" aria-hidden="true"><span></span> Arrived at Anthony's day</div>
           <button class="memory-pin" type="button" data-photo-index="0" aria-label="Open featured memory">
             <img src="assets/anthony-thank-you/thumbs/moment-01-thumb.jpg" alt="Open featured baby shower memory">
           </button>
           <div class="orbit orbit-one">
-            <button class="photo-chip" type="button" data-photo-index="1"><img src="assets/anthony-thank-you/thumbs/moment-02-thumb.jpg" alt="Open baby shower memory"></button>
-            <button class="photo-chip" type="button" data-photo-index="4"><img src="assets/anthony-thank-you/thumbs/moment-05-thumb.jpg" alt="Open baby shower memory"></button>
-            <button class="photo-chip" type="button" data-photo-index="7"><img src="assets/anthony-thank-you/thumbs/moment-08-thumb.jpg" alt="Open baby shower memory"></button>
-            <button class="photo-chip" type="button" data-photo-index="10"><img src="assets/anthony-thank-you/thumbs/moment-11-thumb.jpg" alt="Open baby shower memory"></button>
-            <button class="photo-chip" type="button" data-photo-index="13"><img src="assets/anthony-thank-you/thumbs/moment-14-thumb.jpg" alt="Open baby shower memory"></button>
+            <div class="satellite"><button class="photo-chip" type="button" data-photo-index="1"><img src="assets/anthony-thank-you/thumbs/moment-02-thumb.jpg" alt="Open baby shower memory"></button></div>
+            <div class="satellite"><button class="photo-chip" type="button" data-photo-index="4"><img src="assets/anthony-thank-you/thumbs/moment-05-thumb.jpg" alt="Open baby shower memory"></button></div>
+            <div class="satellite"><button class="photo-chip" type="button" data-photo-index="7"><img src="assets/anthony-thank-you/thumbs/moment-08-thumb.jpg" alt="Open baby shower memory"></button></div>
+            <div class="satellite"><button class="photo-chip" type="button" data-photo-index="10"><img src="assets/anthony-thank-you/thumbs/moment-11-thumb.jpg" alt="Open baby shower memory"></button></div>
+            <div class="satellite"><button class="photo-chip" type="button" data-photo-index="13"><img src="assets/anthony-thank-you/thumbs/moment-14-thumb.jpg" alt="Open baby shower memory"></button></div>
           </div>
           <div class="orbit orbit-two">
-            <button class="photo-chip" type="button" data-photo-index="2"><img src="assets/anthony-thank-you/thumbs/moment-03-thumb.jpg" alt="Open baby shower memory"></button>
-            <button class="photo-chip" type="button" data-photo-index="5"><img src="assets/anthony-thank-you/thumbs/moment-06-thumb.jpg" alt="Open baby shower memory"></button>
-            <button class="photo-chip" type="button" data-photo-index="8"><img src="assets/anthony-thank-you/thumbs/moment-09-thumb.jpg" alt="Open baby shower memory"></button>
-            <button class="photo-chip" type="button" data-photo-index="11"><img src="assets/anthony-thank-you/thumbs/moment-12-thumb.jpg" alt="Open baby shower memory"></button>
-            <button class="photo-chip" type="button" data-photo-index="14"><img src="assets/anthony-thank-you/thumbs/moment-15-thumb.jpg" alt="Open baby shower memory"></button>
+            <div class="satellite"><button class="photo-chip" type="button" data-photo-index="2"><img src="assets/anthony-thank-you/thumbs/moment-03-thumb.jpg" alt="Open baby shower memory"></button></div>
+            <div class="satellite"><button class="photo-chip" type="button" data-photo-index="5"><img src="assets/anthony-thank-you/thumbs/moment-06-thumb.jpg" alt="Open baby shower memory"></button></div>
+            <div class="satellite"><button class="photo-chip" type="button" data-photo-index="8"><img src="assets/anthony-thank-you/thumbs/moment-09-thumb.jpg" alt="Open baby shower memory"></button></div>
+            <div class="satellite"><button class="photo-chip" type="button" data-photo-index="11"><img src="assets/anthony-thank-you/thumbs/moment-12-thumb.jpg" alt="Open baby shower memory"></button></div>
+            <div class="satellite"><button class="photo-chip" type="button" data-photo-index="14"><img src="assets/anthony-thank-you/thumbs/moment-15-thumb.jpg" alt="Open baby shower memory"></button></div>
           </div>
         </div>
       </div>
