@@ -76,12 +76,17 @@
   .stat span{display:block;margin-top:7px;font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 
   .world-section{position:relative;overflow:hidden;background:
-    radial-gradient(circle at 22% 28%,rgba(217,138,122,.34),transparent 30%),
-    radial-gradient(circle at 78% 22%,rgba(111,142,105,.32),transparent 28%),
-    linear-gradient(145deg,#101a2d,#20385a 56%,#f5e3bd 170%);
+    radial-gradient(circle at 18% 20%,rgba(242,198,109,.26),transparent 24%),
+    radial-gradient(circle at 78% 14%,rgba(91,143,203,.32),transparent 28%),
+    radial-gradient(circle at 86% 78%,rgba(217,138,122,.28),transparent 26%),
+    linear-gradient(145deg,#07101f,#12243d 46%,#284b70 78%,#f5e3bd 170%);
     color:#fff}
-  .world-section::before{content:"";position:absolute;inset:0;opacity:.28;background-image:radial-gradient(circle,rgba(255,255,255,.74) 1px,transparent 1.5px);background-size:38px 38px;mask-image:linear-gradient(90deg,#000,transparent 72%)}
-  .world-inner{position:relative;z-index:1;width:min(1120px,100%);margin:0 auto;padding:clamp(66px,9vw,108px) clamp(20px,5vw,64px);display:grid;grid-template-columns:minmax(0,.86fr) minmax(360px,1.14fr);gap:clamp(32px,6vw,74px);align-items:center}
+  .world-section::before{content:"";position:absolute;inset:0;opacity:.42;background-image:
+    radial-gradient(circle,rgba(255,255,255,.95) 1px,transparent 1.6px),
+    radial-gradient(circle,rgba(242,198,109,.8) 1px,transparent 1.5px);
+    background-size:46px 46px,92px 92px;background-position:0 0,28px 18px;mask-image:linear-gradient(90deg,#000,transparent 76%)}
+  .world-section::after{content:"";position:absolute;left:10%;right:8%;top:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(242,198,109,.18),rgba(255,255,255,.5),rgba(242,198,109,.18),transparent);filter:blur(.2px);transform:rotate(-8deg)}
+  .world-inner{position:relative;z-index:1;width:min(1120px,100%);margin:0 auto;padding:clamp(66px,9vw,108px) clamp(20px,5vw,64px);display:grid;grid-template-columns:minmax(0,.82fr) minmax(390px,1.18fr);gap:clamp(32px,6vw,74px);align-items:center}
   .kicker{margin:0 0 14px;font-size:.75rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#f2c66d}
   .world-copy h2{font-family:Fraunces,serif;font-size:clamp(2.45rem,6vw,5.4rem);line-height:.93;letter-spacing:-.04em;margin:0;text-wrap:balance}
   .world-copy p:not(.kicker){max-width:520px;margin:22px 0 0;color:rgba(255,255,255,.78);font-size:1.04rem;line-height:1.8}
@@ -89,36 +94,51 @@
   .share-row .btn{min-height:44px}
   .share-row .btn-primary{background:#fff;color:#172033}
   .share-row .btn-secondary{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.24)}
-  .world-stage{position:relative;min-height:560px;display:grid;place-items:center;perspective:1100px}
-  .earth{position:relative;width:min(48vw,430px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:
-      radial-gradient(circle at 32% 24%,rgba(255,255,255,.9),transparent 9%),
-      radial-gradient(circle at 36% 32%,#87c7ff 0 15%,transparent 16%),
-      radial-gradient(circle at 66% 48%,#77a96e 0 9%,transparent 10%),
-      radial-gradient(circle at 48% 64%,#6c9364 0 13%,transparent 14%),
-      radial-gradient(circle at 28% 52%,#d9bd7a 0 12%,transparent 13%),
-      linear-gradient(135deg,#69b5ed,#2f6fa9 54%,#153b6a);
-    box-shadow:inset -44px -34px 70px rgba(7,18,33,.48),inset 18px 18px 40px rgba(255,255,255,.16),0 44px 110px -42px rgba(0,0,0,.82);animation:earthBreathe 7s ease-in-out infinite}
-  .earth::before{content:"";position:absolute;inset:-12% -36%;background:
-    radial-gradient(ellipse at 20% 42%,#6f9f67 0 7%,transparent 8%),
-    radial-gradient(ellipse at 43% 54%,#e0c27c 0 8%,transparent 9%),
-    radial-gradient(ellipse at 61% 36%,#6f9f67 0 9%,transparent 10%),
-    radial-gradient(ellipse at 76% 62%,#d9bd7a 0 7%,transparent 8%);
-    filter:blur(.4px);opacity:.92;animation:landDrift 18s linear infinite}
-  .earth::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(115deg,rgba(255,255,255,.32),transparent 36%,rgba(0,0,0,.22) 78%)}
-  .orbit{position:absolute;inset:7%;z-index:3;border:1px solid rgba(255,255,255,.15);border-radius:50%;transform-style:preserve-3d;animation:orbitSpin 24s linear infinite;pointer-events:none}
-  .orbit-two{inset:15%;animation-duration:19s;animation-direction:reverse;transform:rotateX(64deg) rotateZ(-18deg)}
+  .world-stage{position:relative;min-height:600px;display:grid;place-items:center;perspective:1200px;isolation:isolate}
+  .world-stage::before{content:"";position:absolute;width:min(88vw,610px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(91,143,203,.18),transparent 62%);filter:blur(10px);animation:stageGlow 5.6s ease-in-out infinite}
+  .route{position:absolute;z-index:1;width:min(86vw,620px);height:min(52vw,360px);border-radius:50%;border-top:2px solid rgba(242,198,109,.74);border-left:1px solid rgba(255,255,255,.18);transform:rotate(-18deg);filter:drop-shadow(0 0 18px rgba(242,198,109,.55));animation:routeArrive 4.8s ease-in-out infinite}
+  .route::after{content:"";position:absolute;right:12%;top:12%;width:12px;height:12px;border-radius:50%;background:#fff3bf;box-shadow:0 0 0 8px rgba(242,198,109,.13),0 0 28px rgba(242,198,109,.95);animation:arrivalFlash 1.8s ease-in-out infinite}
+  .earth{position:relative;z-index:2;width:min(46vw,420px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:
+      radial-gradient(circle at 28% 22%,rgba(255,255,255,.92),transparent 8%),
+      radial-gradient(circle at 34% 34%,#8fd2ff 0 13%,transparent 14%),
+      radial-gradient(circle at 66% 47%,#83b96f 0 9%,transparent 10%),
+      radial-gradient(circle at 49% 67%,#7da46a 0 13%,transparent 14%),
+      radial-gradient(circle at 28% 53%,#e4c275 0 12%,transparent 13%),
+      linear-gradient(135deg,#7bc6ff,#2f78b6 52%,#113961);
+    box-shadow:inset -54px -42px 76px rgba(5,12,24,.58),inset 22px 20px 42px rgba(255,255,255,.18),0 50px 120px -42px rgba(0,0,0,.88);animation:earthTravel 8s ease-in-out infinite}
+  .earth::before{content:"";position:absolute;inset:-12% -42%;background:
+    radial-gradient(ellipse at 18% 42%,#72a465 0 8%,transparent 9%),
+    radial-gradient(ellipse at 42% 55%,#e1c17a 0 8%,transparent 9%),
+    radial-gradient(ellipse at 60% 35%,#6b9f65 0 10%,transparent 11%),
+    radial-gradient(ellipse at 78% 62%,#dbbd74 0 8%,transparent 9%);
+    filter:blur(.35px);opacity:.94;animation:landDrift 13s linear infinite}
+  .earth::after{content:"";position:absolute;inset:0;border-radius:50%;background:
+    linear-gradient(115deg,rgba(255,255,255,.32),transparent 32%,rgba(0,0,0,.34) 78%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.13) 0 1px,transparent 1px 40px),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.11) 0 1px,transparent 1px 44px);
+    mix-blend-mode:screen}
+  .arrival-card{position:absolute;right:3%;top:9%;z-index:5;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(14px);box-shadow:0 18px 46px -24px rgba(0,0,0,.9);font-size:.78rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#fff;animation:arrivalCard 4.8s ease-in-out infinite}
+  .arrival-card span{width:10px;height:10px;border-radius:50%;background:#f2c66d;box-shadow:0 0 0 7px rgba(242,198,109,.16)}
+  .orbit{position:absolute;inset:5%;z-index:4;border:1px solid rgba(255,255,255,.22);border-radius:50%;transform-style:preserve-3d;animation:orbitSpin 18s linear infinite;pointer-events:none}
+  .orbit-two{inset:14%;animation-duration:14s;animation-direction:reverse;transform:rotateX(64deg) rotateZ(-18deg)}
   .orbit-one{transform:rotateX(66deg) rotateZ(18deg)}
-  .photo-chip{position:absolute;width:108px;aspect-ratio:1;border:3px solid rgba(255,255,255,.9);border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 18px 44px -18px rgba(0,0,0,.75);transform:translate(-50%,-50%) rotateX(-66deg);cursor:pointer}
+  .photo-chip{position:absolute;width:124px;aspect-ratio:1;border:4px solid rgba(255,255,255,.95);border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 22px 54px -18px rgba(0,0,0,.8);transform:translate(-50%,-50%) rotateX(-66deg) rotate(-4deg);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
   .world-stage:hover .orbit{animation-play-state:paused}
   .orbit .photo-chip{pointer-events:auto}
+  .photo-chip:hover{transform:translate(-50%,-50%) rotateX(-66deg) rotate(0deg) scale(1.08);box-shadow:0 30px 72px -18px rgba(0,0,0,.92)}
   .photo-chip img{width:100%;height:100%;object-fit:cover;display:block}
   .photo-chip:nth-child(1){left:50%;top:0}.photo-chip:nth-child(2){left:94%;top:38%}.photo-chip:nth-child(3){left:75%;top:88%}.photo-chip:nth-child(4){left:18%;top:78%}.photo-chip:nth-child(5){left:6%;top:32%}
-  .orbit-two .photo-chip{width:86px;border-radius:18px;transform:translate(-50%,-50%) rotateX(-64deg)}
-  .memory-pin{position:absolute;left:50%;top:50%;z-index:2;width:18px;height:18px;border-radius:50%;background:#f2c66d;box-shadow:0 0 0 9px rgba(242,198,109,.18),0 0 38px rgba(242,198,109,.9);animation:pulsePin 1.8s ease-in-out infinite}
+  .orbit-two .photo-chip{width:94px;border-radius:20px;transform:translate(-50%,-50%) rotateX(-64deg) rotate(5deg)}
+  .memory-pin{position:absolute;left:57%;top:42%;z-index:5;width:118px;aspect-ratio:1;border:4px solid #fff;border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 24px 62px -22px rgba(0,0,0,.9),0 0 0 10px rgba(242,198,109,.1);animation:pulsePin 2.4s ease-in-out infinite}
+  .memory-pin img{width:100%;height:100%;object-fit:cover;display:block}
   @keyframes orbitSpin{to{transform:rotateX(66deg) rotateZ(378deg)}}
-  @keyframes earthBreathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.025)}}
-  @keyframes landDrift{to{transform:translateX(26%)}}
-  @keyframes pulsePin{0%,100%{transform:translate(-50%,-50%) scale(.9)}50%{transform:translate(-50%,-50%) scale(1.2)}}
+  @keyframes earthTravel{0%,100%{transform:translate3d(-10px,8px,0) rotate(-2deg) scale(.985)}42%{transform:translate3d(14px,-10px,0) rotate(2deg) scale(1.035)}70%{transform:translate3d(0,-4px,0) rotate(0deg) scale(1.01)}}
+  @keyframes stageGlow{0%,100%{opacity:.7;transform:scale(.96)}50%{opacity:1;transform:scale(1.05)}}
+  @keyframes routeArrive{0%{clip-path:inset(0 88% 0 0);opacity:.35}45%,70%{clip-path:inset(0 0 0 0);opacity:1}100%{clip-path:inset(0 0 0 82%);opacity:.35}}
+  @keyframes arrivalFlash{0%,100%{transform:scale(.86)}50%{transform:scale(1.28)}}
+  @keyframes arrivalCard{0%,100%{transform:translateY(8px);opacity:.78}45%,70%{transform:none;opacity:1}}
+  @keyframes landDrift{to{transform:translateX(30%)}}
+  @keyframes pulsePin{0%,100%{transform:translate(-50%,-50%) rotate(3deg) scale(.96)}50%{transform:translate(-50%,-50%) rotate(-2deg) scale(1.04)}}
 
   .gallery-head{display:flex;justify-content:space-between;gap:22px;align-items:end;padding-bottom:24px}
   .gallery-head p{max-width:470px;margin:0;color:var(--muted);line-height:1.7;font-weight:600}
@@ -162,6 +182,8 @@
     .earth{width:min(72vw,360px)}
     .photo-chip{width:86px;border-radius:18px}
     .orbit-two .photo-chip{width:72px}
+    .memory-pin{width:94px;border-radius:22px}
+    .arrival-card{right:0;top:3%}
     .gallery-head{display:block}
     .gallery-head p{margin-top:14px}
     .gallery{grid-template-columns:repeat(6,1fr)}
@@ -180,6 +202,8 @@
     .earth{width:min(76vw,290px)}
     .photo-chip{width:70px;border-radius:15px;border-width:2px}
     .orbit-two .photo-chip{width:58px}
+    .memory-pin{width:74px;border-radius:18px;border-width:2px}
+    .arrival-card{font-size:.64rem;letter-spacing:.08em;padding:8px 10px}
     .share-row .btn{width:100%}
     .memory-strip{grid-template-columns:1fr}
     .memory-strip img:first-child{grid-row:auto;min-height:230px}
@@ -187,7 +211,7 @@
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
-    .scroll-cue,.tile,.tile img,.earth,.earth::before,.orbit,.memory-pin{animation:none!important;transition:none!important}
+    .scroll-cue,.tile,.tile img,.earth,.earth::before,.orbit,.memory-pin,.route,.arrival-card{animation:none!important;transition:none!important}
     .tile{opacity:1;transform:none}
   }
 </style>
@@ -264,8 +288,12 @@
           </div>
         </div>
         <div class="world-stage" aria-label="Animated photo world">
+          <div class="route" aria-hidden="true"></div>
           <div class="earth" aria-hidden="true"></div>
-          <button class="memory-pin photo-chip" type="button" data-photo-index="0" aria-label="Open featured memory"></button>
+          <div class="arrival-card" aria-hidden="true"><span></span> Arrived at Anthony's day</div>
+          <button class="memory-pin" type="button" data-photo-index="0" aria-label="Open featured memory">
+            <img src="assets/anthony-thank-you/thumbs/moment-01-thumb.jpg" alt="Open featured baby shower memory">
+          </button>
           <div class="orbit orbit-one">
             <button class="photo-chip" type="button" data-photo-index="1"><img src="assets/anthony-thank-you/thumbs/moment-02-thumb.jpg" alt="Open baby shower memory"></button>
             <button class="photo-chip" type="button" data-photo-index="4"><img src="assets/anthony-thank-you/thumbs/moment-05-thumb.jpg" alt="Open baby shower memory"></button>
